@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class ActivarMapa : MonoBehaviour
 {
-     private bool activeCanvasMiniMap;
+    private bool activeCanvasMiniMap;
     public GameObject CanvasMiniMap;
 
     void Start()

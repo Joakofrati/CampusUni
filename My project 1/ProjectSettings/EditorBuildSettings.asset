@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/RedBusInterface.unity
+    guid: adc2497a8cb2d514db9e2236413f4e78
+  - enabled: 1
+    path: Assets/Scenes/BlueBusInterface.unity
+    guid: eb2e2cfb73ac8fd488f7e4768b87127b
+  - enabled: 1
+    path: Assets/Scenes/BrownBusInterface.unity
+    guid: 36963f08898074643a80ce9351c7ed51
   m_configObjects: {}

@@ -6,26 +6,42 @@ public class ActivarMapa : MonoBehaviour
 {
     private bool activeCanvasMiniMap;
     public GameObject CanvasMiniMap;
+    public GameObject Player
+    ;
+    public GameObject MiniMap;
 
     void Start()
     {
         activeCanvasMiniMap = false;
-        ToggleCanvasVisibility(activeCanvasMiniMap);
+        CanvasMiniMap.SetActive(false);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if ((Input.GetKeyDown(KeyCode.M)) && (!activeCanvasMiniMap))
+        { 
+           
+            activeCanvasMiniMap = true;
+            CanvasMiniMap.SetActive(true);
+            MiniMap.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
+            Player.GetComponent<PlayerMove>().enabled = false;
+            Cursor.visible = true;
+
+        } else if (Input.GetKeyDown(KeyCode.M) && activeCanvasMiniMap)
         {
-            activeCanvasMiniMap = !activeCanvasMiniMap; // Cambia el estado opuesto
-            ToggleCanvasVisibility(activeCanvasMiniMap);
-            Debug.Log(activeCanvasMiniMap ? "Lo activo" : "Lo desactivo");
+            
+            activeCanvasMiniMap = false;
+            CanvasMiniMap.SetActive(false);
+            MiniMap.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
+            Player.GetComponent<PlayerMove>().enabled = true;
+            Cursor.visible = false;
+            
+           
+
         }
     }
 
-    void ToggleCanvasVisibility(bool active)
-    {
-        CanvasMiniMap.SetActive(active);
-        
-    }
+    
 }

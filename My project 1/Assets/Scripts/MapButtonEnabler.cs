@@ -28,13 +28,27 @@ public class MapButtonEnabler : MonoBehaviour
         {
             case "Pab3Butt":
                 childText.text = "Pabellon 3";
-           
-
             break;
-             case "Pab1Butt":
+            case "Pab1Butt":
                 childText.text = "Pabellon 1";
-   
-
+            break;
+            case "ExaButt":
+                childText.text = "Exactas";
+            break;
+            case "ExaPab4Butt":
+                childText.text = "Exactas/Pabellon 4";
+            break;
+            case "Pab2Butt":
+                childText.text = "Pabellon 2";
+            break;
+            case "EcoButt":
+                childText.text = "Economicas";
+            break;
+            case "HumButt":
+                childText.text = "Humanas";
+            break;
+            case "VeteButt":
+                childText.text = "Veterinaria";
             break;
         }
     }

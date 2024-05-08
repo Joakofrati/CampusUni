@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\LimitCamera.cs" />
      <Compile Include="Assets\Scripts\ButtonEditor.cs" />
      <Compile Include="Assets\Scripts\OnClickTextEnabler.cs" />
+     <Compile Include="Assets\Scripts\Teleport.cs" />
      <Compile Include="Assets\Scripts\ActivarMapa.cs" />
      <Compile Include="Assets\Scripts\InteractRedBus.cs" />
      <Compile Include="Assets\Scripts\InvisibleButton.cs" />

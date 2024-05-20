@@ -1,30 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class MiniMapInterior : MonoBehaviour
+public class MiniMapInterior : MonoBehaviourPunCallbacks
 {
-    public GameObject camera;
-    public GameObject player;
 
     void Start()
     {
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameObject camera = other.transform.Find("CameraMiniMap").gameObject;
+            Debug.Log(camera);
+            camera.GetComponent<Transform>().position = new Vector3(camera
+            .transform.position.x, other.GetComponent<Transform>().position.y + 2.3f, camera
+            .transform.position.z);
+            camera.GetComponent<Camera>().orthographicSize = 5.0f;
+        }
         
     }
 
-    void OnTriggerEnter()
+    void OnTriggerExit(Collider other)
     {
-        camera.GetComponent<Transform>().position = new Vector3(camera
-        .transform.position.x,player.GetComponent<Transform>().position.y + 2.3f, camera
+        if (other.CompareTag("Player"))
+        {
+            GameObject camera = other.transform.Find("CameraMiniMap").gameObject;
+            camera.GetComponent<Transform>().position = new Vector3(camera
+        .transform.position.x, 255, camera
         .transform.position.z);
-        camera.GetComponent<Camera>().orthographicSize = 5.0f;
-    }
-
-    void OnTriggerExit()
-    {
-        camera.GetComponent<Transform>().position = new Vector3(camera
-        .transform.position.x,255, camera
-        .transform.position.z);
-        camera.GetComponent<Camera>().orthographicSize = 8.0f;
+            camera.GetComponent<Camera>().orthographicSize = 8.0f;
+        }
+        
     }
 }

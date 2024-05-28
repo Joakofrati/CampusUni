@@ -25,6 +25,17 @@ ehthumbs.db
 *.unityproj
 *.booproj
 
+# Carpetas Ignoradas
+# =====================================
+Library/
+Logs/
+Packages/
+ProjectSettings/
+UserSettings/
+
+# Archivos Ignorados
+# =====================================
+
 # Unity generated
 # ===============
 [Oo]bj/

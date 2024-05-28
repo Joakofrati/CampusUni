@@ -5,9 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class UserInterface : MonoBehaviour
 {
+    public GameObject nicknameScreen;
+    public void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        
+    }
+
     public void logIn()
     {
-        SceneManager.LoadScene("SampleScene");
+        nicknameScreen.SetActive(true);
+        //SceneManager.LoadScene("SampleScene");
+
     }
 
     public void logOut()

@@ -22,7 +22,7 @@ public class MapButtonEnabler : MonoBehaviour
     {
         barraEnabler ^= true;
         Barra.SetActive(barraEnabler);
-        Text childText = Barra.GetComponentInChildren<Text>();
+        Text childText = Barra.transform.Find("Nombre").GetComponent<Text>();
      
         switch (gameObject.name)
         {
@@ -41,14 +41,57 @@ public class MapButtonEnabler : MonoBehaviour
             case "Pab2Butt":
                 childText.text = "Pabellon 2";
             break;
-            case "EcoButt":
+            case "PabEconomicasButt":
                 childText.text = "Economicas";
             break;
-            case "HumButt":
+            case "PabKioscoEcoButt":
+                childText.text = "Kiosco Economicas";
+            break;
+            case "PabHumanasButt":
                 childText.text = "Humanas";
             break;
-            case "VeteButt":
+            case "Vete3Butt":
                 childText.text = "Veterinaria";
+            break;
+            case "Vete2Butt":
+            case "VeteButt":
+                childText.text = "Pabellon Veterinaria";
+            break;
+            case "BoxesInvesButt":
+                childText.text = "Boxes de Investigación";
+            break;
+            case "BancoButt":
+                childText.text = "Banco Santander";
+            break;
+            case "ComedorButt":
+                childText.text = "Comedor";
+            break;
+            case "IsistanButt":
+                childText.text = "ISISTAN";
+            break;
+            case "IfimatButt":
+                childText.text = "IFIMAT";
+            break;
+            case "TecAlimButt":
+                childText.text = "Tecnología Alimentaria";
+            break;
+            case "BoxesInves2Butt":
+                childText.text = "Boxes de Investigación II";
+            break;
+            case "DepProdAnimalButt":
+                childText.text = "Departamento de Producción Animal";
+            break;
+            case "SanidadAnimalButt":
+                childText.text = "Sanidad Animal";
+            break;
+            case "PlademaButt":
+                childText.text = "PLADEMA";
+            break;
+            case "ColesButt":
+                childText.text = "Colectivos";
+            break;
+            case "BibliotecaButt":
+                childText.text = "Biblioteca";
             break;
         }
     }

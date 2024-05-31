@@ -9,6 +9,7 @@ public class LimitCamera : MonoBehaviourPunCallbacks
     ;
     private void Start()
     {
+        Debug.Log("LIMIT CAMERA " + Player.name);
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 

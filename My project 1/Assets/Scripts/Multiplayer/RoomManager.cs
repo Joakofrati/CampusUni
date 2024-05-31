@@ -6,34 +6,14 @@ using Photon.Pun;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     public PhotonView player;
-    [Space]
     public Transform spawnPoint;
-
-    [Space]
     public GameObject roomCam;
-    [Space]
     public GameObject nameUI;
     public GameObject connectingUI;
 
+    public GameObject[] characterPrefabs;
+
     private string nickname = "unnamed";
-
-    // public void Update()
-    //{
-    //  if (Input.GetKeyDown(KeyCode.Escape))
-    // {
-    //    DisconnectFromRoom();
-    //}
-    //}
-
-    public void DisconnectFromRoom()
-    {
-        if (PhotonNetwork.InRoom)
-        {
-            Debug.Log("LEAVE ROOM");
-            PhotonNetwork.LeaveRoom();
-        }
-
-    }
 
     public void ChangeNickname(string name)
     {
@@ -43,19 +23,20 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public void JoinRoomButton()
     {
         Debug.Log("Connecting...");
-
-        //   if (PhotonNetwork.IsConnected) {
-        //       PhotonNetwork.JoinOrCreateRoom("test", null, null);
-        //   }
-
         PhotonNetwork.ConnectUsingSettings();
         nameUI.SetActive(false);
         PhotonNetwork.NickName = nickname;
+        if (nickname == "unnamed")
+        {
+            PhotonNetwork.NickName = PlayerPrefs.GetString("NickName");
+        }
+        else
+        {
+            PlayerPrefs.SetString("NickName", nickname);
+        }
         connectingUI.SetActive(true);
-      //  CargarEscena();
-        
-
     }
+
     public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
@@ -67,27 +48,34 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
         PhotonNetwork.JoinOrCreateRoom("test", null, null);
-
         Debug.Log("You're in Lobby");
     }
+
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-
         Debug.Log("You're in a Room");
-        //    roomCam.SetActive(false);
+        Debug.Log("Entro ONJOINEDROOM");
 
-        GameObject playerClone = PhotonNetwork.Instantiate(player.name, spawnPoint.position, spawnPoint.rotation);
-        DontDestroyOnLoad(playerClone);
-        Debug.Log(player.name);
+        if (PlayerPrefs.HasKey("SelectedCharacterIndex"))
+        {
+            int selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex");
+            GameObject playerClone = PhotonNetwork.Instantiate(characterPrefabs[selectedCharacterIndex].name, spawnPoint.position, spawnPoint.rotation);
 
-        playerClone.tag = "Player";
-        playerClone.transform.Find("MiniMapPlayer").gameObject.SetActive(true);
-        playerClone.transform.Find("MapMark").gameObject.SetActive(true);
-        playerClone.transform.Find("MiniMapMark").gameObject.SetActive(true);
-        
+            DontDestroyOnLoad(playerClone);
 
-        PhotonNetwork.LoadLevel("SampleScene");
+            playerClone.tag = "Player";
+            playerClone.transform.Find("MiniMapPlayer").gameObject.SetActive(true);
+            playerClone.transform.Find("MapMark").gameObject.SetActive(true);
+            playerClone.transform.Find("MiniMapMark").gameObject.SetActive(true);
+
+
+            PhotonNetwork.LoadLevel("SampleScene");
+        }
+        else
+        {
+            Debug.LogWarning("SelectedCharacterIndex not found. Character selection may not have been completed.");
+        }
     }
 }
-    
+

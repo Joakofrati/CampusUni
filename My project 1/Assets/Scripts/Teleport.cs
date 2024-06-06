@@ -9,6 +9,7 @@ public class Teleport : MonoBehaviour
 
     public GameObject Player;
     public GameObject Barra;
+    public GameObject mensaje;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class Teleport : MonoBehaviour
     // Update is called once per frame
     void TP()
     {
+        mensaje.SetActive(false); //eoo
         Text childText = Barra.GetComponentInChildren<Text>();
         String switcher = childText.text;
         switch (switcher)

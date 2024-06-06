@@ -8,10 +8,11 @@ public class MapButtonEnabler : MonoBehaviour
 
     public GameObject Barra;
     public bool barraEnabler;
-
+    public GameObject mensaje;
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("BOTON");
         gameObject.GetComponent<Button>().onClick.AddListener(OnOff);
         barraEnabler = false;
         
@@ -20,8 +21,10 @@ public class MapButtonEnabler : MonoBehaviour
 
      void OnOff()
     {
+        mensaje.SetActive(false); //EOOOO
         barraEnabler ^= true;
         Barra.SetActive(barraEnabler);
+        Debug.Log("");
         Text childText = Barra.GetComponentInChildren<Text>();
      
         switch (gameObject.name)

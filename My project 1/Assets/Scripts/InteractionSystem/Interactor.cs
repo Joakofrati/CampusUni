@@ -16,6 +16,7 @@ public class Interactor : MonoBehaviourPunCallbacks
     public GameObject CanvasInteract;
 
 
+
     void Update()
     {
         if (photonView.IsMine)
@@ -49,5 +50,10 @@ public class Interactor : MonoBehaviourPunCallbacks
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(interactionPoint.position, interactionRadius);
+    }
+
+    public void ForPauseMenu()
+    {
+        CanvasInteract.SetActive(false);
     }
 }

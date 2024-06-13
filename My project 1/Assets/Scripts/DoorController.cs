@@ -11,6 +11,8 @@ public class DoorController : MonoBehaviourPunCallbacks, IPunObservable
     public KeyCode interactKey = KeyCode.E; // Tecla para interactuar
 
     public GameObject canvasInteract;
+    private GameObject pauseMenu;
+    private PauseMenu pauseMenuScript;
 
     private bool isOpen = false; // Estado de la puerta (abierta/cerrada)
     private bool isInRange = false; // Indica si el jugador está cerca
@@ -21,6 +23,9 @@ public class DoorController : MonoBehaviourPunCallbacks, IPunObservable
 
     void Start()
     {
+        pauseMenu = GameObject.Find("PauseMenu");
+        pauseMenuScript = pauseMenu.GetComponent<PauseMenu>();
+
         // Guardar las rotaciones de la puerta (abierta y cerrada)
         doorClosedRotation = transform.rotation;
         doorOpenRotation = Quaternion.Euler(0, doorOpenAngle, 0) * doorClosedRotation;
@@ -74,7 +79,11 @@ public class DoorController : MonoBehaviourPunCallbacks, IPunObservable
         if (other.CompareTag("Player"))
         {
             isInRange = true;
-            canvasInteract.SetActive(true);
+            if (!pauseMenuScript.isPause)
+            {
+                canvasInteract.SetActive(true);
+            }
+            
         }
     }
 
@@ -83,7 +92,10 @@ public class DoorController : MonoBehaviourPunCallbacks, IPunObservable
         if (other.CompareTag("Player"))
         {
             isInRange = true;
-            canvasInteract.SetActive(true);
+            if (!pauseMenuScript.isPause)
+            {
+                canvasInteract.SetActive(true);
+            }
         }
     }
 
@@ -107,5 +119,10 @@ public class DoorController : MonoBehaviourPunCallbacks, IPunObservable
         {
             isOpen = (bool)stream.ReceiveNext();
         }
+    }
+
+    public void ForPauseMenu()
+    {
+        canvasInteract.SetActive(false);
     }
 }
